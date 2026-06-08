@@ -1,0 +1,59 @@
+import Link from "next/link";
+import { QrCode, BadgePercent } from "lucide-react";
+
+export function PromoCarousel() {
+  return (
+    <section className="mt-4">
+      <div className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 md:px-6">
+        <Link
+          href="/products"
+          className="relative flex min-w-[86%] snap-center items-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-coral-600 to-coral-400 p-4 text-white shadow-card md:min-w-[420px]"
+        >
+          <div className="flex-1">
+            <p className="text-[11px] font-semibold text-white/90">
+              100% genuine medicines
+            </p>
+            <h3 className="text-lg font-extrabold leading-tight">
+              Authenticity,
+              <br />
+              Scan away!
+            </h3>
+            <p className="mt-1 text-[11px] text-white/85">
+              Verify every medicine you order
+            </p>
+          </div>
+          <QrCode className="h-16 w-16 shrink-0 text-white/90" strokeWidth={1.4} />
+        </Link>
+
+        <Link
+          href="/products"
+          className="relative flex min-w-[86%] snap-center items-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-aqua-300 to-aqua-200 p-4 text-maroon-700 shadow-card md:min-w-[420px]"
+        >
+          <div className="flex-1">
+            <p className="text-[11px] font-bold uppercase tracking-wide">
+              First order offer
+            </p>
+            <h3 className="text-lg font-extrabold leading-tight text-ink">
+              Up to 25% OFF
+            </h3>
+            <p className="mt-1 text-[12px] font-semibold text-ink/70">
+              Use code{" "}
+              <span className="rounded bg-white/70 px-1.5 py-0.5 font-bold">
+                PHARMA25
+              </span>
+            </p>
+          </div>
+          <BadgePercent
+            className="h-16 w-16 shrink-0 text-ink/70"
+            strokeWidth={1.4}
+          />
+        </Link>
+      </div>
+
+      <div className="mt-2.5 flex justify-center gap-1.5">
+        <span className="h-1.5 w-5 rounded-full bg-coral-500" />
+        <span className="h-1.5 w-1.5 rounded-full bg-coral-200" />
+      </div>
+    </section>
+  );
+}

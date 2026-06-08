@@ -1,0 +1,146 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import {
+  MapPin,
+  ChevronDown,
+  ChevronLeft,
+  Search,
+  ShoppingBag,
+} from "lucide-react";
+import { useCart } from "@/context/CartContext";
+import { Logo } from "@/components/Logo";
+
+type Props = {
+  variant?: "home" | "inner";
+  title?: string;
+};
+
+export function Header({ variant = "home", title }: Props) {
+  const router = useRouter();
+  const { itemCount } = useCart();
+  const [q, setQ] = useState("");
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push(q.trim() ? `/products?q=${encodeURIComponent(q.trim())}` : "/products");
+  };
+
+  const CartBadge = ({ light }: { light?: boolean }) =>
+    itemCount > 0 ? (
+      <span
+        className={`absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full px-1 text-[10px] font-bold ${
+          light ? "bg-white text-coral-600" : "bg-coral-500 text-white"
+        }`}
+      >
+        {itemCount}
+      </span>
+    ) : null;
+
+  return (
+    <header className="sticky top-0 z-40">
+      {/* ---------- Mobile ---------- */}
+      <div className="md:hidden">
+        {variant === "home" ? (
+          <div className="bg-app-header px-4 pb-4 pt-4">
+            <div className="flex items-center justify-between">
+              <button type="button" className="flex items-center gap-2 text-left">
+                <span className="grid h-9 w-9 place-items-center rounded-full bg-white/70 shadow-sm">
+                  <MapPin className="h-4 w-4 text-coral-600" />
+                </span>
+                <span className="leading-tight">
+                  <span className="flex items-center gap-1 text-sm font-bold text-ink">
+                    Office <ChevronDown className="h-3.5 w-3.5 text-ink-soft" />
+                  </span>
+                  <span className="block max-w-[200px] truncate text-[11px] text-ink-soft">
+                    Ak Residency, Sector 2c, Hyderabad
+                  </span>
+                </span>
+              </button>
+              <Link
+                href="/cart"
+                aria-label="Cart"
+                className="relative grid h-10 w-10 place-items-center rounded-full bg-white/70 shadow-sm"
+              >
+                <ShoppingBag className="h-5 w-5 text-ink" />
+                <CartBadge />
+              </Link>
+            </div>
+
+            <form onSubmit={submit} className="mt-3.5">
+              <div className="flex items-center gap-2 rounded-2xl border border-hairline bg-white px-4 py-3 shadow-sm">
+                <Search className="h-5 w-5 text-coral-500" />
+                <input
+                  value={q}
+                  onChange={(e) => setQ(e.target.value)}
+                  placeholder="Search for medicines & health products"
+                  className="w-full bg-transparent text-sm text-ink outline-none placeholder:text-muted"
+                />
+              </div>
+            </form>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2 border-b border-hairline bg-white px-3 py-3">
+            <button
+              type="button"
+              onClick={() => router.back()}
+              aria-label="Go back"
+              className="grid h-9 w-9 place-items-center rounded-full hover:bg-coral-50"
+            >
+              <ChevronLeft className="h-5 w-5 text-ink" />
+            </button>
+            <h1 className="flex-1 truncate text-base font-bold text-ink">
+              {title ?? "Pharmaciti"}
+            </h1>
+            <Link
+              href="/cart"
+              aria-label="Cart"
+              className="relative grid h-9 w-9 place-items-center rounded-full hover:bg-coral-50"
+            >
+              <ShoppingBag className="h-5 w-5 text-ink" />
+              <CartBadge />
+            </Link>
+          </div>
+        )}
+      </div>
+
+      {/* ---------- Desktop ---------- */}
+      <div className="hidden border-b border-hairline bg-white/90 backdrop-blur md:block">
+        <div className="mx-auto flex max-w-[1200px] items-center gap-6 px-6 py-3">
+          <Link href="/" className="shrink-0">
+            <Logo variant="brand" />
+          </Link>
+          <form onSubmit={submit} className="flex max-w-2xl flex-1">
+            <div className="flex w-full items-center gap-2 rounded-2xl border border-hairline bg-white px-4 py-2.5 shadow-sm focus-within:border-coral-300">
+              <Search className="h-5 w-5 text-coral-500" />
+              <input
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder="Search for medicines, wellness, lab tests…"
+                className="w-full bg-transparent text-sm text-ink outline-none placeholder:text-muted"
+              />
+            </div>
+          </form>
+          <nav className="flex items-center gap-5 text-sm font-semibold text-ink-soft">
+            <Link href="/products" className="hover:text-coral-600">
+              Shop
+            </Link>
+            <Link href="/products?cat=lab-tests" className="hover:text-coral-600">
+              Lab Tests
+            </Link>
+          </nav>
+          <Link
+            href="/cart"
+            className="relative flex items-center gap-2 rounded-xl bg-coral-500 px-4 py-2.5 text-sm font-bold text-white shadow-soft transition hover:bg-coral-600"
+          >
+            <ShoppingBag className="h-4 w-4" />
+            Cart
+            <CartBadge light />
+          </Link>
+        </div>
+      </div>
+    </header>
+  );
+}
