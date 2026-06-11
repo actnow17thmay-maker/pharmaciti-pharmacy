@@ -22,7 +22,7 @@ export function ProductCard({ product }: { product: Product }) {
             </span>
           )}
           {product.rx && (
-            <span className="absolute right-2 top-2 rounded bg-white/85 px-1.5 py-0.5 text-[9px] font-bold text-coral-600">
+            <span className="absolute right-2 top-2 rounded bg-white/85 px-1.5 py-0.5 text-[9px] font-bold text-sea-600">
               Rx
             </span>
           )}

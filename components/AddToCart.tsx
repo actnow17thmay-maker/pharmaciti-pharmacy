@@ -28,8 +28,8 @@ export function AddToCart({ productId, full = false }: Props) {
         }}
         className={
           full
-            ? "flex w-full items-center justify-center gap-2 rounded-xl bg-coral-500 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-soft transition hover:bg-coral-600 active:scale-[0.99]"
-            : "rounded-lg border border-coral-500 bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-coral-600 transition hover:bg-coral-50 active:scale-95"
+            ? "flex w-full items-center justify-center gap-2 rounded-xl bg-sea-500 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-soft transition hover:bg-sea-600 active:scale-[0.99]"
+            : "rounded-lg border border-sea-500 bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-sea-600 transition hover:bg-sea-50 active:scale-95"
         }
       >
         {full && <Plus className="h-4 w-4" strokeWidth={3} />}
@@ -43,8 +43,8 @@ export function AddToCart({ productId, full = false }: Props) {
       onClick={stop}
       className={
         full
-          ? "flex w-full items-center justify-between rounded-xl bg-coral-500 px-2 py-1.5 text-white shadow-soft"
-          : "flex items-center gap-1 rounded-lg border border-coral-500 bg-coral-500 text-white"
+          ? "flex w-full items-center justify-between rounded-xl bg-sea-500 px-2 py-1.5 text-white shadow-soft"
+          : "flex items-center gap-1 rounded-lg border border-sea-500 bg-sea-500 text-white"
       }
     >
       <button

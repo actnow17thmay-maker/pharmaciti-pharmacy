@@ -15,7 +15,7 @@ export function HeroBanner() {
         />
 
         <div className="relative z-10 max-w-[80%] md:max-w-[62%]">
-          <span className="inline-block rounded-full bg-white/45 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-maroon-700">
+          <span className="inline-block rounded-full bg-white/45 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-deep-700">
             Pharmaciti Pharmacy
           </span>
           <h2 className="mt-3 text-2xl font-extrabold leading-tight text-ink md:text-4xl">

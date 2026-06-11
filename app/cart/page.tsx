@@ -18,22 +18,11 @@ import { CategoryIcon } from "@/components/CategoryIcon";
 import { getCategory } from "@/lib/products";
 
 export default function CartPage() {
-  const {
-    items,
-    itemCount,
-    subtotal,
-    savings,
-    hasFreeDelivery,
-    remainingForFreeDelivery,
-    freeDeliveryThreshold,
-    removeItem,
-    clear,
-  } = useCart();
+  const { items, itemCount, subtotal, savings, removeItem, clear } = useCart();
   const [placed, setPlaced] = useState(false);
 
-  const deliveryFee = subtotal === 0 || hasFreeDelivery ? 0 : 39;
+  const deliveryFee = 0;
   const toPay = subtotal + deliveryFee;
-  const progress = Math.min(100, (subtotal / freeDeliveryThreshold) * 100);
 
   if (placed) {
     return (
@@ -49,7 +38,7 @@ export default function CartPage() {
           <div className="mt-3 flex gap-3">
             <Link
               href="/products"
-              className="rounded-xl bg-coral-500 px-5 py-2.5 text-sm font-bold text-white"
+              className="rounded-xl bg-sea-500 px-5 py-2.5 text-sm font-bold text-white"
             >
               Continue shopping
             </Link>
@@ -70,8 +59,8 @@ export default function CartPage() {
       <div className="mx-auto w-full max-w-[1200px]">
         <Header variant="inner" title="Your Cart" />
         <div className="flex flex-col items-center gap-3 px-6 py-24 text-center">
-          <span className="grid h-20 w-20 place-items-center rounded-full bg-coral-50">
-            <ShoppingBag className="h-9 w-9 text-coral-400" />
+          <span className="grid h-20 w-20 place-items-center rounded-full bg-sea-50">
+            <ShoppingBag className="h-9 w-9 text-sea-400" />
           </span>
           <h1 className="text-lg font-bold text-ink">Your cart is empty</h1>
           <p className="max-w-xs text-sm text-muted">
@@ -79,7 +68,7 @@ export default function CartPage() {
           </p>
           <Link
             href="/products"
-            className="mt-1 rounded-xl bg-coral-500 px-6 py-3 text-sm font-bold text-white shadow-soft"
+            className="mt-1 rounded-xl bg-sea-500 px-6 py-3 text-sm font-bold text-white shadow-soft"
           >
             Browse products
           </Link>
@@ -101,7 +90,7 @@ export default function CartPage() {
             </p>
             <button
               onClick={clear}
-              className="text-xs font-semibold text-muted hover:text-coral-600"
+              className="text-xs font-semibold text-muted hover:text-sea-600"
             >
               Clear cart
             </button>
@@ -140,7 +129,7 @@ export default function CartPage() {
                       <button
                         onClick={() => removeItem(product.id)}
                         aria-label="Remove item"
-                        className="shrink-0 rounded-lg p-1 text-muted hover:bg-coral-50 hover:text-coral-600"
+                        className="shrink-0 rounded-lg p-1 text-muted hover:bg-sea-50 hover:text-sea-600"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -170,21 +159,10 @@ export default function CartPage() {
         {/* Summary */}
         <div className="mt-6 md:mt-0">
           <div className="md:sticky md:top-24">
-            {!hasFreeDelivery && (
-              <div className="mb-3 rounded-2xl border border-hairline bg-white p-3 shadow-card">
-                <p className="flex items-center gap-2 text-[12px] font-semibold text-ink">
-                  <Truck className="h-4 w-4 text-coral-500" />
-                  Add {formatRupees(remainingForFreeDelivery)} more for free
-                  delivery
-                </p>
-                <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-coral-100">
-                  <div
-                    className="h-full rounded-full bg-coral-500 transition-all"
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
-              </div>
-            )}
+            <div className="mb-3 flex items-center gap-2 rounded-2xl border border-hairline bg-white p-3 text-[12px] font-semibold text-ink shadow-card">
+              <Truck className="h-4 w-4 shrink-0 text-sea-500" />
+              No minimum order value · Free home delivery
+            </div>
 
             <div className="rounded-2xl border border-hairline bg-white p-4 shadow-card">
               <h2 className="text-sm font-bold text-ink">Bill details</h2>
@@ -219,7 +197,7 @@ export default function CartPage() {
                   setPlaced(true);
                   clear();
                 }}
-                className="mt-4 hidden w-full items-center justify-center gap-2 rounded-xl bg-coral-500 py-3.5 text-sm font-bold text-white shadow-soft transition hover:bg-coral-600 md:flex"
+                className="mt-4 hidden w-full items-center justify-center gap-2 rounded-xl bg-sea-500 py-3.5 text-sm font-bold text-white shadow-soft transition hover:bg-sea-600 md:flex"
               >
                 Proceed to checkout <ArrowRight className="h-4 w-4" />
               </button>
@@ -246,7 +224,7 @@ export default function CartPage() {
               setPlaced(true);
               clear();
             }}
-            className="flex items-center gap-2 rounded-xl bg-coral-500 px-6 py-3 text-sm font-bold text-white shadow-soft active:scale-[0.98]"
+            className="flex items-center gap-2 rounded-xl bg-sea-500 px-6 py-3 text-sm font-bold text-white shadow-soft active:scale-[0.98]"
           >
             Checkout <ArrowRight className="h-4 w-4" />
           </button>

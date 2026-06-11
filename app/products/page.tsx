@@ -36,8 +36,8 @@ function ProductsView() {
       <Header variant="inner" title="Shop" />
 
       <main className="px-4 pb-28 pt-3 md:px-6 md:pb-16">
-        <div className="flex items-center gap-2 rounded-2xl border border-hairline bg-white px-4 py-3 shadow-sm focus-within:border-coral-300">
-          <Search className="h-5 w-5 text-coral-500" />
+        <div className="flex items-center gap-2 rounded-2xl border border-hairline bg-white px-4 py-3 shadow-sm focus-within:border-sea-300">
+          <Search className="h-5 w-5 text-sea-500" />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
@@ -66,7 +66,7 @@ function ProductsView() {
 
         {results.length === 0 ? (
           <div className="flex flex-col items-center gap-3 py-20 text-center">
-            <SearchX className="h-10 w-10 text-coral-300" />
+            <SearchX className="h-10 w-10 text-sea-300" />
             <p className="text-base font-bold text-ink">No products found</p>
             <p className="max-w-xs text-sm text-muted">
               Try a different search or pick another category.
@@ -76,7 +76,7 @@ function ProductsView() {
                 setQ("");
                 setCat("all");
               }}
-              className="rounded-xl bg-coral-500 px-5 py-2.5 text-sm font-bold text-white"
+              className="rounded-xl bg-sea-500 px-5 py-2.5 text-sm font-bold text-white"
             >
               Clear filters
             </button>
@@ -109,8 +109,8 @@ function Chip({
       onClick={onClick}
       className={`shrink-0 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition ${
         active
-          ? "border-coral-500 bg-coral-500 text-white"
-          : "border-hairline bg-white text-ink-soft hover:border-coral-300"
+          ? "border-sea-500 bg-sea-500 text-white"
+          : "border-hairline bg-white text-ink-soft hover:border-sea-300"
       }`}
     >
       {children}

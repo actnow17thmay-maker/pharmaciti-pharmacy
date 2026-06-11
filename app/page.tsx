@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { FileText } from "lucide-react";
 import { Header } from "@/components/Header";
-import { FeatureStrip } from "@/components/FeatureStrip";
 import { CategoryTabs } from "@/components/CategoryTabs";
 import { PromoCarousel } from "@/components/PromoCarousel";
 import { HeroBanner } from "@/components/HeroBanner";
@@ -21,15 +20,14 @@ export default function HomePage() {
       <Header variant="home" />
 
       <main className="pb-40 md:pb-16">
-        <FeatureStrip />
         <CategoryTabs />
 
         {/* Order with prescription */}
         <section className="px-4 pt-4 md:px-6">
-          <div className="flex items-center justify-between gap-3 rounded-2xl border border-coral-100 bg-coral-50/70 px-4 py-3">
+          <div className="flex items-center justify-between gap-3 rounded-2xl border border-sea-100 bg-sea-50/70 px-4 py-3">
             <div className="flex items-center gap-3">
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white shadow-sm">
-                <FileText className="h-5 w-5 text-coral-500" />
+                <FileText className="h-5 w-5 text-sea-500" />
               </span>
               <div>
                 <p className="text-sm font-bold text-ink">
@@ -41,7 +39,7 @@ export default function HomePage() {
               </div>
             </div>
             <Link
-              href="/products"
+              href="/prescription"
               className="shrink-0 rounded-xl bg-ink px-4 py-2 text-xs font-bold text-white transition hover:bg-black"
             >
               Order now
@@ -115,7 +113,7 @@ function FooterCol({ title, links }: { title: string; links: string[] }) {
       <ul className="mt-3 space-y-2 text-sm text-muted">
         {links.map((l) => (
           <li key={l}>
-            <Link href="/products" className="hover:text-coral-600">
+            <Link href="/products" className="hover:text-sea-600">
               {l}
             </Link>
           </li>

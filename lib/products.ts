@@ -43,13 +43,13 @@ export const categories: Category[] = [
 ];
 
 const TINTS = [
-  "#FFE7DF",
-  "#E7F4EC",
-  "#E6F0FB",
-  "#FCEFD9",
-  "#F1E9FB",
-  "#FDE6EC",
-  "#E3F5F3",
+  "#E6F4F1",
+  "#E3F0FB",
+  "#EAF6EF",
+  "#E9F1FA",
+  "#E7F5F4",
+  "#EEF2FB",
+  "#E4F3EC",
 ];
 
 const raw: Omit<Product, "tint">[] = [

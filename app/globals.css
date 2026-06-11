@@ -1,57 +1,53 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand coral / peach palette (matches the reference app) */
-  --color-coral-50: #fff5f2;
-  --color-coral-100: #ffe7df;
-  --color-coral-200: #ffcbbb;
-  --color-coral-300: #ffa88f;
-  --color-coral-400: #fb8163;
-  --color-coral-500: #f65f43;
-  --color-coral-600: #e8492c;
-  --color-coral-700: #c13a22;
+  /* Primary brand: clean sea-green */
+  --color-sea-50: #ecfbf6;
+  --color-sea-100: #d2f4e9;
+  --color-sea-200: #a6e9d5;
+  --color-sea-300: #6dd8bd;
+  --color-sea-400: #34bda0;
+  --color-sea-500: #109a82;
+  --color-sea-600: #0b8068;
+  --color-sea-700: #0a6757;
 
-  --color-peach-50: #fff8f3;
-  --color-peach-100: #ffede2;
-  --color-peach-200: #fcdac6;
-  --color-peach-300: #f8c3a4;
-  --color-peach-400: #f4a87f;
+  /* Secondary accent: sky blue */
+  --color-sky-100: #e6f2fc;
+  --color-sky-200: #c8e4f8;
+  --color-sky-300: #93ccf0;
+  --color-sky-400: #4aa6e0;
+  --color-sky-500: #2a8fd0;
 
-  --color-blush-100: #fdeae6;
-  --color-blush-200: #fbd8d1;
+  /* Deep navy for contrast bars / banners */
+  --color-deep-600: #123b59;
+  --color-deep-700: #0e2f48;
 
-  --color-aqua-200: #b5ece8;
-  --color-aqua-300: #8ce0dc;
-  --color-aqua-400: #57c9c4;
-
-  --color-maroon-600: #7a1f40;
-  --color-maroon-700: #6b1a38;
-
-  /* Pharmaciti brand green (kept for the logo / brand accents) */
+  /* Pharmaciti brand green (logo / plus badge accents) */
   --color-brand-700: #176a3a;
   --color-brand-600: #1f8a4c;
   --color-brand-500: #2ba35c;
-  --color-leaf-400: #7cc243;
-  --color-leaf-500: #5bb033;
+  --color-leaf-400: #5fbf46;
+  --color-leaf-500: #43a52a;
 
-  --color-ink: #1b1b1f;
-  --color-ink-soft: #4a4a52;
-  --color-muted: #7b7b85;
-  --color-hairline: #f1e8e3;
+  /* Cool-toned neutrals */
+  --color-ink: #15212b;
+  --color-ink-soft: #45525c;
+  --color-muted: #7a8791;
+  --color-hairline: #e7eef0;
 
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system,
     sans-serif;
 
-  --shadow-card: 0 1px 2px rgba(27, 27, 31, 0.04),
-    0 8px 24px -12px rgba(27, 27, 31, 0.12);
-  --shadow-soft: 0 10px 30px -18px rgba(246, 95, 67, 0.45);
+  --shadow-card: 0 1px 2px rgba(21, 33, 43, 0.04),
+    0 8px 24px -12px rgba(21, 33, 43, 0.12);
+  --shadow-soft: 0 10px 30px -18px rgba(16, 154, 130, 0.5);
 
   --radius-xl2: 1.25rem;
 }
 
 :root {
   --background: #ffffff;
-  --foreground: #1b1b1f;
+  --foreground: #15212b;
 }
 
 html {
@@ -77,13 +73,13 @@ body {
 
 /* Generic decorative gradients reused across the app */
 .bg-app-header {
-  background: linear-gradient(180deg, #fde6e1 0%, #fff1ea 55%, #ffffff 100%);
+  background: linear-gradient(180deg, #d8f1ea 0%, #ecfaf5 55%, #ffffff 100%);
 }
 .bg-hero {
-  background: linear-gradient(135deg, #ffd9c2 0%, #ffb596 45%, #fb8e6b 100%);
+  background: linear-gradient(135deg, #9fe3d2 0%, #4cc6aa 50%, #14a085 100%);
 }
 .bg-category {
-  background: linear-gradient(160deg, #ffe9d8 0%, #ffd0b4 100%);
+  background: linear-gradient(160deg, #e4f1fb 0%, #cfeaf4 100%);
 }
 
 @keyframes fadeUp {

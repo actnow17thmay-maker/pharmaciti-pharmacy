@@ -28,7 +28,7 @@ export default function ProductDetailPage() {
           <p className="text-lg font-bold text-ink">Product not found</p>
           <Link
             href="/products"
-            className="rounded-xl bg-coral-500 px-5 py-2.5 text-sm font-bold text-white"
+            className="rounded-xl bg-sea-500 px-5 py-2.5 text-sm font-bold text-white"
           >
             Browse products
           </Link>
@@ -62,7 +62,7 @@ export default function ProductDetailPage() {
                 </span>
               )}
               {product.rx && (
-                <span className="absolute right-4 top-4 rounded-lg bg-white/85 px-2 py-1 text-xs font-bold text-coral-600">
+                <span className="absolute right-4 top-4 rounded-lg bg-white/85 px-2 py-1 text-xs font-bold text-sea-600">
                   Prescription
                 </span>
               )}
@@ -78,7 +78,7 @@ export default function ProductDetailPage() {
 
           {/* Info */}
           <div className="px-4 pt-5 md:px-0 md:pt-0">
-            <p className="text-xs font-semibold uppercase tracking-wide text-coral-600">
+            <p className="text-xs font-semibold uppercase tracking-wide text-sea-600">
               {product.brand}
             </p>
             <h1 className="mt-1 text-xl font-extrabold leading-snug text-ink md:text-2xl">
@@ -127,8 +127,8 @@ export default function ProductDetailPage() {
               </p>
             </div>
 
-            <div className="mt-5 flex items-center gap-3 rounded-2xl border border-hairline bg-coral-50/60 px-4 py-3 text-sm">
-              <Truck className="h-5 w-5 shrink-0 text-coral-500" />
+            <div className="mt-5 flex items-center gap-3 rounded-2xl border border-hairline bg-sea-50/60 px-4 py-3 text-sm">
+              <Truck className="h-5 w-5 shrink-0 text-sea-500" />
               <span className="font-semibold text-ink">Free delivery</span>
               <span className="text-muted">on orders above ₹500</span>
             </div>

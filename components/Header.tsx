@@ -9,6 +9,7 @@ import {
   ChevronLeft,
   Search,
   ShoppingBag,
+  User,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { Logo } from "@/components/Logo";
@@ -32,7 +33,7 @@ export function Header({ variant = "home", title }: Props) {
     itemCount > 0 ? (
       <span
         className={`absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full px-1 text-[10px] font-bold ${
-          light ? "bg-white text-coral-600" : "bg-coral-500 text-white"
+          light ? "bg-white text-sea-600" : "bg-sea-500 text-white"
         }`}
       >
         {itemCount}
@@ -45,33 +46,34 @@ export function Header({ variant = "home", title }: Props) {
       <div className="md:hidden">
         {variant === "home" ? (
           <div className="bg-app-header px-4 pb-4 pt-4">
-            <div className="flex items-center justify-between">
-              <button type="button" className="flex items-center gap-2 text-left">
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-white/70 shadow-sm">
-                  <MapPin className="h-4 w-4 text-coral-600" />
-                </span>
-                <span className="leading-tight">
-                  <span className="flex items-center gap-1 text-sm font-bold text-ink">
-                    Office <ChevronDown className="h-3.5 w-3.5 text-ink-soft" />
+            <div className="flex items-center gap-2">
+              <Logo variant="brand" className="shrink-0" />
+              <button
+                type="button"
+                className="flex min-w-0 flex-1 items-center gap-1 text-left"
+              >
+                <MapPin className="h-4 w-4 shrink-0 text-sea-600" />
+                <span className="min-w-0 leading-tight">
+                  <span className="flex items-center gap-0.5 text-[12px] font-bold text-ink">
+                    Office <ChevronDown className="h-3 w-3 text-ink-soft" />
                   </span>
-                  <span className="block max-w-[200px] truncate text-[11px] text-ink-soft">
-                    Ak Residency, Sector 2c, Hyderabad
+                  <span className="block truncate text-[10px] text-ink-soft">
+                    Ak Residency, Sector 2c
                   </span>
                 </span>
               </button>
               <Link
-                href="/cart"
-                aria-label="Cart"
-                className="relative grid h-10 w-10 place-items-center rounded-full bg-white/70 shadow-sm"
+                href="/profile"
+                aria-label="Profile"
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/70 shadow-sm"
               >
-                <ShoppingBag className="h-5 w-5 text-ink" />
-                <CartBadge />
+                <User className="h-5 w-5 text-ink" />
               </Link>
             </div>
 
             <form onSubmit={submit} className="mt-3.5">
               <div className="flex items-center gap-2 rounded-2xl border border-hairline bg-white px-4 py-3 shadow-sm">
-                <Search className="h-5 w-5 text-coral-500" />
+                <Search className="h-5 w-5 text-sea-500" />
                 <input
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
@@ -87,7 +89,7 @@ export function Header({ variant = "home", title }: Props) {
               type="button"
               onClick={() => router.back()}
               aria-label="Go back"
-              className="grid h-9 w-9 place-items-center rounded-full hover:bg-coral-50"
+              className="grid h-9 w-9 place-items-center rounded-full hover:bg-sea-50"
             >
               <ChevronLeft className="h-5 w-5 text-ink" />
             </button>
@@ -95,12 +97,11 @@ export function Header({ variant = "home", title }: Props) {
               {title ?? "Pharmaciti"}
             </h1>
             <Link
-              href="/cart"
-              aria-label="Cart"
-              className="relative grid h-9 w-9 place-items-center rounded-full hover:bg-coral-50"
+              href="/profile"
+              aria-label="Profile"
+              className="grid h-9 w-9 place-items-center rounded-full hover:bg-sea-50"
             >
-              <ShoppingBag className="h-5 w-5 text-ink" />
-              <CartBadge />
+              <User className="h-5 w-5 text-ink" />
             </Link>
           </div>
         )}
@@ -113,8 +114,8 @@ export function Header({ variant = "home", title }: Props) {
             <Logo variant="brand" />
           </Link>
           <form onSubmit={submit} className="flex max-w-2xl flex-1">
-            <div className="flex w-full items-center gap-2 rounded-2xl border border-hairline bg-white px-4 py-2.5 shadow-sm focus-within:border-coral-300">
-              <Search className="h-5 w-5 text-coral-500" />
+            <div className="flex w-full items-center gap-2 rounded-2xl border border-hairline bg-white px-4 py-2.5 shadow-sm focus-within:border-sea-300">
+              <Search className="h-5 w-5 text-sea-500" />
               <input
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
@@ -124,16 +125,23 @@ export function Header({ variant = "home", title }: Props) {
             </div>
           </form>
           <nav className="flex items-center gap-5 text-sm font-semibold text-ink-soft">
-            <Link href="/products" className="hover:text-coral-600">
+            <Link href="/products" className="hover:text-sea-600">
               Shop
             </Link>
-            <Link href="/products?cat=lab-tests" className="hover:text-coral-600">
+            <Link href="/products?cat=lab-tests" className="hover:text-sea-600">
               Lab Tests
             </Link>
           </nav>
           <Link
+            href="/profile"
+            aria-label="Profile"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full hover:bg-sea-50"
+          >
+            <User className="h-5 w-5 text-ink-soft" />
+          </Link>
+          <Link
             href="/cart"
-            className="relative flex items-center gap-2 rounded-xl bg-coral-500 px-4 py-2.5 text-sm font-bold text-white shadow-soft transition hover:bg-coral-600"
+            className="relative flex items-center gap-2 rounded-xl bg-sea-500 px-4 py-2.5 text-sm font-bold text-white shadow-soft transition hover:bg-sea-600"
           >
             <ShoppingBag className="h-4 w-4" />
             Cart

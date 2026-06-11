@@ -7,7 +7,7 @@ type Props = {
 };
 
 /**
- * Pharmaciti mark = medical cross + leaf. `light` sits on the coral header,
+ * Pharmaciti mark = medical cross + leaf. `light` sits on the sea header,
  * `brand` uses the green brand colours for white surfaces. Swap freely later
  * if the client supplies an exact logo asset.
  */
@@ -23,7 +23,7 @@ export function Logo({ variant = "light", showText = true, className }: Props) {
         }`}
       >
         <Plus
-          className={onColor ? "text-coral-500" : "text-white"}
+          className={onColor ? "text-sea-500" : "text-white"}
           strokeWidth={3.2}
           size={20}
         />

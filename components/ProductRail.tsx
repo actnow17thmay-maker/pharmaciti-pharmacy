@@ -17,7 +17,7 @@ export function ProductRail({ title, products, href }: Props) {
         {href && (
           <Link
             href={href}
-            className="flex items-center gap-0.5 text-xs font-bold text-coral-600 hover:text-coral-700"
+            className="flex items-center gap-0.5 text-xs font-bold text-sea-600 hover:text-sea-700"
           >
             View all <ChevronRight className="h-4 w-4" />
           </Link>

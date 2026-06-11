@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
+import { WelcomeModal } from "@/components/WelcomeModal";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f65f43",
+  themeColor: "#109a82",
   width: "device-width",
   initialScale: 1,
 };
@@ -29,7 +30,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${jakarta.variable} h-full antialiased`}>
       <body className="min-h-full bg-white text-ink">
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>
+          {children}
+          <WelcomeModal />
+        </CartProvider>
       </body>
     </html>
   );
