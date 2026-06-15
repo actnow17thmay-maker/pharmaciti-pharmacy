@@ -2,7 +2,15 @@
 
 import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Search, SearchX } from "lucide-react";
+import {
+  Search,
+  SearchX,
+  Pill,
+  Droplets,
+  Package,
+  LayoutGrid,
+  type LucideIcon,
+} from "lucide-react";
 import { Header } from "@/components/Header";
 import { BottomNav } from "@/components/BottomNav";
 import { ProductCard } from "@/components/ProductCard";
@@ -12,6 +20,13 @@ import {
   searchProducts,
 } from "@/lib/products";
 
+const PHARMACY_SUBS: { id: string; name: string; Icon: LucideIcon }[] = [
+  { id: "all", name: "All", Icon: LayoutGrid },
+  { id: "tablets", name: "Tablets", Icon: Pill },
+  { id: "syrups", name: "Syrups", Icon: Droplets },
+  { id: "general", name: "General items", Icon: Package },
+];
+
 function ProductsView() {
   const params = useSearchParams();
   const qParam = params.get("q") ?? "";
@@ -19,17 +34,30 @@ function ProductsView() {
 
   const [q, setQ] = useState(qParam);
   const [cat, setCat] = useState(catParam);
+  const [sub, setSub] = useState("all");
 
   useEffect(() => setQ(qParam), [qParam]);
   useEffect(() => setCat(catParam), [catParam]);
+  // Reset the pharmacy sub-filter whenever the top-level category changes
+  useEffect(() => setSub("all"), [cat]);
 
   const results = useMemo(() => {
     const list = searchProducts(q);
-    return cat === "all" ? list : list.filter((p) => p.category === cat);
-  }, [q, cat]);
+    let filtered = cat === "all" ? list : list.filter((p) => p.category === cat);
+    if (cat === "pharmacy" && sub !== "all") {
+      filtered = filtered.filter((p) => p.subcategory === sub);
+    }
+    return filtered;
+  }, [q, cat, sub]);
 
-  const heading =
-    cat !== "all" ? getCategory(cat)?.name ?? "Shop" : q ? `Results for “${q}”` : "All Products";
+  let heading = "All Products";
+  if (cat === "pharmacy" && sub !== "all") {
+    heading = PHARMACY_SUBS.find((s) => s.id === sub)?.name ?? "Pharmacy";
+  } else if (cat !== "all") {
+    heading = getCategory(cat)?.name ?? "Shop";
+  } else if (q) {
+    heading = `Results for “${q}”`;
+  }
 
   return (
     <div className="mx-auto w-full max-w-[1200px]">
@@ -57,6 +85,40 @@ function ProductsView() {
           ))}
         </div>
 
+        {cat === "pharmacy" && (
+          <div className="no-scrollbar mt-4 flex gap-4 overflow-x-auto pb-1">
+            {PHARMACY_SUBS.map(({ id, name, Icon }) => {
+              const isActive = sub === id;
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => setSub(id)}
+                  aria-pressed={isActive}
+                  className="group flex shrink-0 flex-col items-center gap-1.5"
+                >
+                  <span
+                    className={`grid h-14 w-14 place-items-center rounded-full border transition ${
+                      isActive
+                        ? "border-sea-500 bg-sea-500 text-white shadow-soft"
+                        : "border-hairline bg-sea-50 text-sea-600 group-hover:border-sea-300"
+                    }`}
+                  >
+                    <Icon className="h-6 w-6" strokeWidth={1.9} />
+                  </span>
+                  <span
+                    className={`text-[11px] font-semibold leading-tight ${
+                      isActive ? "text-sea-600" : "text-ink-soft"
+                    }`}
+                  >
+                    {name}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+
         <div className="mt-5 flex items-center justify-between">
           <h1 className="text-lg font-bold text-ink md:text-xl">{heading}</h1>
           <span className="text-xs font-medium text-muted">
@@ -75,6 +137,7 @@ function ProductsView() {
               onClick={() => {
                 setQ("");
                 setCat("all");
+                setSub("all");
               }}
               className="rounded-xl bg-sea-500 px-5 py-2.5 text-sm font-bold text-white"
             >

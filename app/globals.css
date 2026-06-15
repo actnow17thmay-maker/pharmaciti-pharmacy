@@ -1,53 +1,53 @@
 @import "tailwindcss";
 
 @theme {
-  /* Primary brand: clean sea-green */
-  --color-sea-50: #ecfbf6;
-  --color-sea-100: #d2f4e9;
-  --color-sea-200: #a6e9d5;
-  --color-sea-300: #6dd8bd;
-  --color-sea-400: #34bda0;
-  --color-sea-500: #109a82;
-  --color-sea-600: #0b8068;
-  --color-sea-700: #0a6757;
+  /* Primary brand: coral / peach (original palette, kept under sea-* names) */
+  --color-sea-50: #fff5f2;
+  --color-sea-100: #ffe7df;
+  --color-sea-200: #ffcbbb;
+  --color-sea-300: #ffa88f;
+  --color-sea-400: #fb8163;
+  --color-sea-500: #f65f43;
+  --color-sea-600: #e8492c;
+  --color-sea-700: #c13a22;
 
-  /* Secondary accent: sky blue */
-  --color-sky-100: #e6f2fc;
-  --color-sky-200: #c8e4f8;
-  --color-sky-300: #93ccf0;
-  --color-sky-400: #4aa6e0;
-  --color-sky-500: #2a8fd0;
+  /* Secondary accent: aqua / teal (original palette, kept under sky-* names) */
+  --color-sky-100: #dbf5f3;
+  --color-sky-200: #b5ece8;
+  --color-sky-300: #8ce0dc;
+  --color-sky-400: #57c9c4;
+  --color-sky-500: #33b3ad;
 
-  /* Deep navy for contrast bars / banners */
-  --color-deep-600: #123b59;
-  --color-deep-700: #0e2f48;
+  /* Deep maroon for contrast bars / banners (kept under deep-* names) */
+  --color-deep-600: #7a1f40;
+  --color-deep-700: #6b1a38;
 
   /* Pharmaciti brand green (logo / plus badge accents) */
   --color-brand-700: #176a3a;
   --color-brand-600: #1f8a4c;
   --color-brand-500: #2ba35c;
-  --color-leaf-400: #5fbf46;
-  --color-leaf-500: #43a52a;
+  --color-leaf-400: #7cc243;
+  --color-leaf-500: #5bb033;
 
-  /* Cool-toned neutrals */
-  --color-ink: #15212b;
-  --color-ink-soft: #45525c;
-  --color-muted: #7a8791;
-  --color-hairline: #e7eef0;
+  /* Warm-toned neutrals */
+  --color-ink: #1b1b1f;
+  --color-ink-soft: #4a4a52;
+  --color-muted: #7b7b85;
+  --color-hairline: #f1e8e3;
 
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system,
     sans-serif;
 
-  --shadow-card: 0 1px 2px rgba(21, 33, 43, 0.04),
-    0 8px 24px -12px rgba(21, 33, 43, 0.12);
-  --shadow-soft: 0 10px 30px -18px rgba(16, 154, 130, 0.5);
+  --shadow-card: 0 1px 2px rgba(27, 27, 31, 0.04),
+    0 8px 24px -12px rgba(27, 27, 31, 0.12);
+  --shadow-soft: 0 10px 30px -18px rgba(246, 95, 67, 0.45);
 
   --radius-xl2: 1.25rem;
 }
 
 :root {
   --background: #ffffff;
-  --foreground: #15212b;
+  --foreground: #1b1b1f;
 }
 
 html {
@@ -73,13 +73,13 @@ body {
 
 /* Generic decorative gradients reused across the app */
 .bg-app-header {
-  background: linear-gradient(180deg, #d8f1ea 0%, #ecfaf5 55%, #ffffff 100%);
+  background: linear-gradient(180deg, #fde6e1 0%, #fff1ea 55%, #ffffff 100%);
 }
 .bg-hero {
-  background: linear-gradient(135deg, #9fe3d2 0%, #4cc6aa 50%, #14a085 100%);
+  background: linear-gradient(135deg, #ffd9c2 0%, #ffb596 45%, #fb8e6b 100%);
 }
 .bg-category {
-  background: linear-gradient(160deg, #e4f1fb 0%, #cfeaf4 100%);
+  background: linear-gradient(160deg, #ffe9d8 0%, #ffd0b4 100%);
 }
 
 @keyframes fadeUp {
@@ -94,4 +94,33 @@ body {
 }
 .animate-fade-up {
   animation: fadeUp 0.4s ease both;
+}
+
+/* Soft pulsing glow ring for the home category tiles */
+@keyframes tileGlow {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.tile-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1.5px solid rgba(246, 95, 67, 0.55);
+  box-shadow: 0 0 12px 1px rgba(246, 95, 67, 0.45);
+  opacity: 0.25;
+  pointer-events: none;
+  animation: tileGlow 2.4s ease-in-out infinite;
+  animation-delay: var(--glow-delay, 0s);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tile-glow::after {
+    animation: none;
+    opacity: 0.5;
+  }
 }

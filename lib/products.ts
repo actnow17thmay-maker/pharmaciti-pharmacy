@@ -15,11 +15,15 @@ export type Category = {
   badge?: string;
 };
 
+/** Pharmacy-only sub-categories shown as round sub-tabs on the products page */
+export type SubcategoryKey = "tablets" | "syrups" | "general";
+
 export type Product = {
   id: string;
   name: string;
   brand: string;
   category: string;
+  subcategory?: SubcategoryKey;
   pack: string;
   price: number;
   mrp: number;
@@ -58,6 +62,7 @@ const raw: Omit<Product, "tint">[] = [
     name: "Dolo 650 Tablet",
     brand: "Micro Labs",
     category: "pharmacy",
+    subcategory: "tablets",
     pack: "Strip of 15 tablets",
     price: 26,
     mrp: 31,
@@ -88,6 +93,7 @@ const raw: Omit<Product, "tint">[] = [
     name: "Cetirizine 10mg",
     brand: "Pharmaciti Generics",
     category: "pharmacy",
+    subcategory: "tablets",
     pack: "Strip of 10 tablets",
     price: 18,
     mrp: 24,
@@ -102,6 +108,7 @@ const raw: Omit<Product, "tint">[] = [
     name: "Pantoprazole 40mg",
     brand: "Sun Pharma",
     category: "pharmacy",
+    subcategory: "tablets",
     pack: "Strip of 15 tablets",
     price: 85,
     mrp: 110,
@@ -116,6 +123,7 @@ const raw: Omit<Product, "tint">[] = [
     name: "Herbal Cough Syrup",
     brand: "Pharmaciti Care",
     category: "pharmacy",
+    subcategory: "syrups",
     pack: "Bottle of 100 ml",
     price: 92,
     mrp: 120,
@@ -130,6 +138,7 @@ const raw: Omit<Product, "tint">[] = [
     name: "Pain Relief Spray",
     brand: "Pharmaciti Care",
     category: "pharmacy",
+    subcategory: "general",
     pack: "55 g spray",
     price: 165,
     mrp: 210,
@@ -138,6 +147,96 @@ const raw: Omit<Product, "tint">[] = [
     description:
       "Fast-acting spray for quick relief from muscle pain, sprains and joint pain.",
     highlights: ["Quick absorption", "Non-sticky", "Cooling effect"],
+  },
+  {
+    id: "digene",
+    name: "Digene Antacid Tablets",
+    brand: "Abbott",
+    category: "pharmacy",
+    subcategory: "tablets",
+    pack: "Strip of 15 tablets",
+    price: 32,
+    mrp: 42,
+    rx: false,
+    rating: 4.4,
+    description:
+      "Chewable antacid tablets that give fast relief from acidity, gas, bloating and heartburn.",
+    highlights: ["Fast acidity relief", "Mint flavour", "Anti-gas action"],
+  },
+  {
+    id: "combiflam",
+    name: "Combiflam Tablet",
+    brand: "Sanofi",
+    category: "pharmacy",
+    subcategory: "tablets",
+    pack: "Strip of 20 tablets",
+    price: 44,
+    mrp: 53,
+    rx: false,
+    rating: 4.5,
+    description:
+      "Ibuprofen and paracetamol combination for relief from pain, inflammation and fever.",
+    highlights: ["Pain & fever relief", "Anti-inflammatory", "Trusted brand"],
+  },
+  {
+    id: "digestive-syrup",
+    name: "Digestive Tonic Syrup",
+    brand: "Pharmaciti Care",
+    category: "pharmacy",
+    subcategory: "syrups",
+    pack: "Bottle of 200 ml",
+    price: 110,
+    mrp: 140,
+    rx: false,
+    rating: 4.3,
+    description:
+      "Ayurvedic digestive tonic that eases indigestion, gas and loss of appetite.",
+    highlights: ["Aids digestion", "Ayurvedic", "Pleasant taste"],
+  },
+  {
+    id: "iron-tonic",
+    name: "Iron Tonic Syrup",
+    brand: "Pharmaciti Care",
+    category: "pharmacy",
+    subcategory: "syrups",
+    pack: "Bottle of 200 ml",
+    price: 135,
+    mrp: 175,
+    rx: false,
+    rating: 4.4,
+    description:
+      "Iron and vitamin B-complex syrup that helps build haemoglobin and fight tiredness.",
+    highlights: ["Builds haemoglobin", "Fights fatigue", "With B-complex"],
+  },
+  {
+    id: "antiseptic-liquid",
+    name: "Antiseptic Disinfectant 100ml",
+    brand: "Pharmaciti Care",
+    category: "pharmacy",
+    subcategory: "general",
+    pack: "100 ml bottle",
+    price: 75,
+    mrp: 95,
+    rx: false,
+    rating: 4.6,
+    description:
+      "Multipurpose antiseptic liquid for first aid on cuts and wounds, and everyday hygiene.",
+    highlights: ["Kills germs", "First aid use", "Multipurpose"],
+  },
+  {
+    id: "first-aid-kit",
+    name: "Cotton & Bandage First-Aid Kit",
+    brand: "Pharmaciti Care",
+    category: "pharmacy",
+    subcategory: "general",
+    pack: "1 kit",
+    price: 199,
+    mrp: 260,
+    rx: false,
+    rating: 4.5,
+    description:
+      "Handy first-aid kit with cotton, gauze, adhesive bandages and antiseptic wipes.",
+    highlights: ["Home & travel", "Complete kit", "Essential first aid"],
   },
   {
     id: "multivitamin",

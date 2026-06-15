@@ -6,7 +6,6 @@ import { PromoCarousel } from "@/components/PromoCarousel";
 import { HeroBanner } from "@/components/HeroBanner";
 import { ProductRail } from "@/components/ProductRail";
 import { BottomNav } from "@/components/BottomNav";
-import { FreeDeliveryBar } from "@/components/FreeDeliveryBar";
 import { Logo } from "@/components/Logo";
 import {
   bestsellers,
@@ -19,7 +18,7 @@ export default function HomePage() {
     <div className="mx-auto w-full max-w-[1200px]">
       <Header variant="home" />
 
-      <main className="pb-40 md:pb-16">
+      <main className="pb-28 md:pb-16">
         <CategoryTabs />
 
         {/* Order with prescription */}
@@ -65,7 +64,6 @@ export default function HomePage() {
         <Footer />
       </main>
 
-      <FreeDeliveryBar />
       <BottomNav />
     </div>
   );

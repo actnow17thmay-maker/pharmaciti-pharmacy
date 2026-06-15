@@ -1,18 +1,17 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   MapPin,
   ChevronDown,
   ChevronLeft,
-  Search,
   ShoppingBag,
   User,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { Logo } from "@/components/Logo";
+import { SearchBox } from "@/components/SearchBox";
 
 type Props = {
   variant?: "home" | "inner";
@@ -22,12 +21,6 @@ type Props = {
 export function Header({ variant = "home", title }: Props) {
   const router = useRouter();
   const { itemCount } = useCart();
-  const [q, setQ] = useState("");
-
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    router.push(q.trim() ? `/products?q=${encodeURIComponent(q.trim())}` : "/products");
-  };
 
   const CartBadge = ({ light }: { light?: boolean }) =>
     itemCount > 0 ? (
@@ -71,17 +64,10 @@ export function Header({ variant = "home", title }: Props) {
               </Link>
             </div>
 
-            <form onSubmit={submit} className="mt-3.5">
-              <div className="flex items-center gap-2 rounded-2xl border border-hairline bg-white px-4 py-3 shadow-sm">
-                <Search className="h-5 w-5 text-sea-500" />
-                <input
-                  value={q}
-                  onChange={(e) => setQ(e.target.value)}
-                  placeholder="Search for medicines & health products"
-                  className="w-full bg-transparent text-sm text-ink outline-none placeholder:text-muted"
-                />
-              </div>
-            </form>
+            <SearchBox
+              className="mt-3.5"
+              placeholder="Search for medicines & health products"
+            />
           </div>
         ) : (
           <div className="flex items-center gap-2 border-b border-hairline bg-white px-3 py-3">
@@ -113,17 +99,10 @@ export function Header({ variant = "home", title }: Props) {
           <Link href="/" className="shrink-0">
             <Logo variant="brand" />
           </Link>
-          <form onSubmit={submit} className="flex max-w-2xl flex-1">
-            <div className="flex w-full items-center gap-2 rounded-2xl border border-hairline bg-white px-4 py-2.5 shadow-sm focus-within:border-sea-300">
-              <Search className="h-5 w-5 text-sea-500" />
-              <input
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                placeholder="Search for medicines, wellness, lab tests…"
-                className="w-full bg-transparent text-sm text-ink outline-none placeholder:text-muted"
-              />
-            </div>
-          </form>
+          <SearchBox
+            className="max-w-2xl flex-1"
+            placeholder="Search for medicines, wellness, lab tests…"
+          />
           <nav className="flex items-center gap-5 text-sm font-semibold text-ink-soft">
             <Link href="/products" className="hover:text-sea-600">
               Shop
