@@ -73,7 +73,7 @@ function ProductsView() {
         {/* Mobile-only: the inner header has no search bar, so the page provides
             one. On md+ the global header search is shown instead (avoids two
             search bars side by side). */}
-        <div className="flex items-center gap-2 rounded-2xl border border-hairline bg-white px-4 py-3 shadow-sm focus-within:border-sea-300 md:hidden">
+        <div className="search-glow flex items-center gap-2 rounded-2xl border bg-white px-4 py-3 transition md:hidden">
           <Search className="h-5 w-5 text-sea-500" />
           <input
             value={q}
