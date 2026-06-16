@@ -4,7 +4,7 @@ import { CategoryIcon } from "@/components/CategoryIcon";
 
 export function PopularCategories() {
   return (
-    <section className="px-4 pt-6 md:px-6">
+    <section className="px-4 pt-3 md:px-6 md:pt-6">
       <h2 className="text-lg font-extrabold text-ink md:text-xl">
         Shop by category
       </h2>

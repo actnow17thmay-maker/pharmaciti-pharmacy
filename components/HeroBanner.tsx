@@ -59,20 +59,20 @@ const SLIDES: Slide[] = [
 
 export function HeroBanner() {
   return (
-    <section className="pt-6">
+    <section className="pt-3">
       <div className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 md:px-6">
         {SLIDES.map((slide, i) => {
           const Decor = slide.decor;
           return (
             <div
               key={i}
-              className="relative min-w-full snap-center overflow-hidden rounded-3xl bg-gradient-to-r from-sea-600 to-sea-400 p-6 shadow-card md:p-10"
+              className="relative min-w-full snap-center overflow-hidden rounded-3xl bg-gradient-to-r from-sea-600 to-sea-400 p-4 shadow-card md:p-8"
             >
-              <div className="pointer-events-none absolute -right-10 -top-12 h-48 w-48 rounded-full bg-white/25" />
-              <div className="pointer-events-none absolute -bottom-16 right-10 h-40 w-40 rounded-full bg-white/15" />
+              <div className="pointer-events-none absolute -right-10 -top-12 h-40 w-40 rounded-full bg-white/25" />
+              <div className="pointer-events-none absolute -bottom-16 right-10 h-36 w-36 rounded-full bg-white/15" />
               <Decor
                 className="pointer-events-none absolute right-6 top-1/2 hidden -translate-y-1/2 text-white/40 md:block"
-                size={150}
+                size={128}
                 strokeWidth={2.4}
               />
 
@@ -80,21 +80,21 @@ export function HeroBanner() {
                 <span className="inline-block rounded-full bg-white/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
                   {slide.badge}
                 </span>
-                <h2 className="mt-3 text-2xl font-extrabold leading-tight text-white md:text-4xl">
+                <h2 className="mt-2 text-xl font-extrabold leading-tight text-white md:text-3xl">
                   {slide.title[0]}
                   <br />
                   {slide.title[1]}
                 </h2>
-                <p className="mt-2 text-sm text-white/85 md:text-base">
+                <p className="mt-1.5 text-[13px] text-white/85 md:text-base">
                   {slide.subtitle}
                 </p>
                 <Link
                   href={slide.cta.href}
-                  className="mt-4 inline-flex items-center gap-2 rounded-xl bg-ink px-5 py-3 text-sm font-bold text-white transition hover:bg-black active:scale-[0.98]"
+                  className="mt-3 inline-flex items-center gap-2 rounded-xl bg-ink px-4 py-2.5 text-sm font-bold text-white transition hover:bg-black active:scale-[0.98]"
                 >
                   {slide.cta.label} <ArrowRight className="h-4 w-4" />
                 </Link>
-                <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[12px] font-semibold text-white/85">
+                <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[12px] font-semibold text-white/85">
                   {slide.features.map(({ icon: Icon, label }) => (
                     <span key={label} className="flex items-center gap-1">
                       <Icon className="h-4 w-4" /> {label}

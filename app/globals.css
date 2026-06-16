@@ -135,3 +135,15 @@ body {
     opacity: 0.5;
   }
 }
+
+/* Static coral glow ring so the search bar stands out from the header */
+.search-glow {
+  border-color: rgba(246, 95, 67, 0.45);
+  box-shadow: 0 0 0 1px rgba(246, 95, 67, 0.2),
+    0 4px 18px -2px rgba(246, 95, 67, 0.4);
+}
+.search-glow:focus-within {
+  border-color: rgba(246, 95, 67, 0.75);
+  box-shadow: 0 0 0 1px rgba(246, 95, 67, 0.35),
+    0 6px 22px -2px rgba(246, 95, 67, 0.55);
+}

@@ -43,7 +43,7 @@ export function SearchBox({ placeholder, className }: Props) {
   return (
     <div className={`relative ${className ?? ""}`}>
       <form onSubmit={submit}>
-        <div className="flex items-center gap-2 rounded-2xl border border-hairline bg-white px-4 py-3 shadow-sm focus-within:border-sea-300 md:py-2.5">
+        <div className="search-glow flex items-center gap-2 rounded-2xl border bg-white px-4 py-3 transition md:py-2.5">
           <Search className="h-5 w-5 shrink-0 text-sea-500" />
           <input
             value={q}
