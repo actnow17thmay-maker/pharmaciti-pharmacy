@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X, BadgePercent, Store, Truck } from "lucide-react";
+import { X, Store, Truck } from "lucide-react";
 import { Logo } from "@/components/Logo";
 
 const FEATURES = [
-  { icon: BadgePercent, label: "Up to 25% Discount" },
   { icon: Store, label: "Wholesale & Retail" },
   { icon: Truck, label: "Free Home Delivery" },
 ];
@@ -68,6 +67,7 @@ export function WelcomeModal() {
             First order offer
           </p>
           <div className="relative mt-1.5 flex items-end justify-center gap-2">
+            <span className="mb-3.5 text-2xl font-extrabold">Up to</span>
             <span className="text-[88px] font-black leading-[0.82] tracking-tight drop-shadow-sm">
               25%
             </span>
@@ -91,20 +91,22 @@ export function WelcomeModal() {
             Genuine medicines &amp; wellness essentials, delivered to your door.
           </p>
 
-          <div className="relative mt-5 grid grid-cols-3 divide-x divide-white/20">
-            {FEATURES.map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className="flex flex-col items-center gap-2 px-2 text-center"
-              >
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-white/15">
-                  <Icon className="h-5 w-5 text-white" />
-                </span>
-                <span className="text-[11px] font-semibold leading-tight text-white">
-                  {label}
-                </span>
-              </div>
-            ))}
+          <div className="relative mt-5 rounded-2xl bg-white p-4 shadow-sm">
+            <div className="grid grid-cols-2 gap-3">
+              {FEATURES.map(({ icon: Icon, label }) => (
+                <div
+                  key={label}
+                  className="flex flex-col items-center gap-2 px-2 text-center"
+                >
+                  <span className="grid h-12 w-12 place-items-center rounded-full bg-sea-50">
+                    <Icon className="h-6 w-6 text-sea-600" />
+                  </span>
+                  <span className="text-[13px] font-semibold leading-tight text-ink">
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

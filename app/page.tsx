@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FileText } from "lucide-react";
 import { Header } from "@/components/Header";
 import { CategoryTabs } from "@/components/CategoryTabs";
+import { PromoCarousel } from "@/components/PromoCarousel";
 import { HeroBanner } from "@/components/HeroBanner";
 import { PopularCategories } from "@/components/PopularCategories";
 import { ProductRail } from "@/components/ProductRail";
@@ -46,6 +47,7 @@ export default function HomePage() {
           </div>
         </section>
 
+        <PromoCarousel />
         <HeroBanner />
 
         <PopularCategories />
