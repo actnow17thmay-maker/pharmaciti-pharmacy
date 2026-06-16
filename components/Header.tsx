@@ -2,13 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import {
-  MapPin,
-  ChevronDown,
-  ChevronLeft,
-  ShoppingBag,
-  User,
-} from "lucide-react";
+import { ChevronLeft, ShoppingBag, User } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { Logo } from "@/components/Logo";
 import { SearchBox } from "@/components/SearchBox";
@@ -41,24 +35,10 @@ export function Header({ variant = "home", title }: Props) {
           <div className="bg-app-header px-4 pb-4 pt-4">
             <div className="flex items-center gap-2">
               <Logo variant="brand" className="shrink-0" />
-              <button
-                type="button"
-                className="flex min-w-0 flex-1 items-center gap-1 text-left"
-              >
-                <MapPin className="h-4 w-4 shrink-0 text-sea-600" />
-                <span className="min-w-0 leading-tight">
-                  <span className="flex items-center gap-0.5 text-[12px] font-bold text-ink">
-                    Office <ChevronDown className="h-3 w-3 text-ink-soft" />
-                  </span>
-                  <span className="block truncate text-[10px] text-ink-soft">
-                    Ak Residency, Sector 2c
-                  </span>
-                </span>
-              </button>
               <Link
                 href="/profile"
                 aria-label="Profile"
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/70 shadow-sm"
+                className="ml-auto grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/70 shadow-sm"
               >
                 <User className="h-5 w-5 text-ink" />
               </Link>
