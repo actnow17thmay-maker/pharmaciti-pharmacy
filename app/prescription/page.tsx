@@ -3,28 +3,43 @@
 import Link from "next/link";
 import {
   UploadCloud,
-  FileText,
   ShieldCheck,
-  Clock,
+  CircleCheck,
+  Truck,
   ArrowRight,
 } from "lucide-react";
 import { Header } from "@/components/Header";
 import { BottomNav } from "@/components/BottomNav";
 
+// The order journey, shown as a progress tracker. Step 0 is the current stage
+// (the customer is on the upload screen).
+const FLOW = [
+  { icon: UploadCloud, label: "Upload prescription" },
+  { icon: ShieldCheck, label: "Pharmacist verifies" },
+  { icon: CircleCheck, label: "Confirm order" },
+  { icon: Truck, label: "Home delivery" },
+];
+const ACTIVE_STEP = 0;
+
 const STEPS = [
   {
-    icon: FileText,
-    title: "Upload your prescription",
+    icon: UploadCloud,
+    title: "Upload prescription",
     desc: "Snap a photo or pick a file from your device.",
   },
   {
     icon: ShieldCheck,
-    title: "Our pharmacist verifies it",
+    title: "Pharmacist verifies",
     desc: "We check the medicines and dosage for you.",
   },
   {
-    icon: Clock,
-    title: "Get it delivered",
+    icon: CircleCheck,
+    title: "Confirm order",
+    desc: "Review the prepared order and confirm to proceed.",
+  },
+  {
+    icon: Truck,
+    title: "Home delivery",
     desc: "Approved orders reach your door — free of charge.",
   },
 ];
@@ -42,6 +57,50 @@ export default function PrescriptionPage() {
           <p className="mt-1 text-[12px] text-muted">
             Upload a valid prescription and our team will prepare your order.
           </p>
+        </div>
+
+        {/* Order progress tracker */}
+        <div className="mt-4 rounded-2xl border border-hairline bg-white p-4 shadow-card">
+          <p className="text-[11px] font-bold uppercase tracking-wide text-muted">
+            Order progress
+          </p>
+          <ol className="mt-3 flex items-start">
+            {FLOW.map((step, i) => {
+              const active = i <= ACTIVE_STEP;
+              const current = i === ACTIVE_STEP;
+              const Icon = step.icon;
+              return (
+                <li
+                  key={step.label}
+                  className="relative flex flex-1 flex-col items-center text-center"
+                >
+                  {i > 0 && (
+                    <span
+                      className={`absolute right-1/2 top-5 z-0 h-0.5 w-full ${
+                        i <= ACTIVE_STEP ? "bg-sea-500" : "bg-hairline"
+                      }`}
+                    />
+                  )}
+                  <span
+                    className={`relative z-10 grid h-10 w-10 place-items-center rounded-full border-2 transition ${
+                      active
+                        ? "border-sea-500 bg-sea-500 text-white"
+                        : "border-hairline bg-white text-muted"
+                    } ${current ? "shadow-soft ring-4 ring-sea-100" : ""}`}
+                  >
+                    <Icon className="h-5 w-5" strokeWidth={2} />
+                  </span>
+                  <span
+                    className={`mt-2 text-[10px] font-semibold leading-tight ${
+                      active ? "text-sea-600" : "text-muted"
+                    }`}
+                  >
+                    {step.label}
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
         </div>
 
         {/* Dropzone (demo) */}

@@ -16,7 +16,15 @@ export type Category = {
 };
 
 /** Pharmacy-only sub-categories shown as round sub-tabs on the products page */
-export type SubcategoryKey = "tablets" | "syrups" | "general";
+export type SubcategoryKey =
+  | "tablets"
+  | "syrups"
+  | "general"
+  | "vitamins"
+  | "diabetes"
+  | "pain-relief"
+  | "cold-cough"
+  | "skin-care";
 
 export type Product = {
   id: string;
@@ -237,6 +245,156 @@ const raw: Omit<Product, "tint">[] = [
     description:
       "Handy first-aid kit with cotton, gauze, adhesive bandages and antiseptic wipes.",
     highlights: ["Home & travel", "Complete kit", "Essential first aid"],
+  },
+  {
+    id: "vitamin-d3",
+    name: "Vitamin D3 60K Capsules",
+    brand: "Sun Pharma",
+    category: "pharmacy",
+    subcategory: "vitamins",
+    pack: "Strip of 4 capsules",
+    price: 78,
+    mrp: 99,
+    rx: false,
+    rating: 4.6,
+    description:
+      "High-strength Vitamin D3 (cholecalciferol 60,000 IU) weekly capsules to correct deficiency and support bone health.",
+    highlights: ["Weekly dose", "Bone & immunity", "Doctor recommended"],
+  },
+  {
+    id: "b-complex",
+    name: "B-Complex Tablets",
+    brand: "Pharmaciti Generics",
+    category: "pharmacy",
+    subcategory: "vitamins",
+    pack: "Strip of 15 tablets",
+    price: 42,
+    mrp: 55,
+    rx: false,
+    rating: 4.4,
+    description:
+      "Vitamin B-complex tablets that support energy metabolism and nerve health and help reduce tiredness.",
+    highlights: ["Energy support", "All B vitamins", "Daily use"],
+  },
+  {
+    id: "metformin",
+    name: "Metformin 500mg",
+    brand: "USV",
+    category: "pharmacy",
+    subcategory: "diabetes",
+    pack: "Strip of 15 tablets",
+    price: 28,
+    mrp: 38,
+    rx: true,
+    rating: 4.5,
+    description:
+      "First-line tablet for type 2 diabetes that helps control blood sugar levels. Prescription required.",
+    highlights: ["Controls blood sugar", "Take with meals", "Doctor advised"],
+  },
+  {
+    id: "sugar-free-tablets",
+    name: "Sugar-Free Sweetener Tablets",
+    brand: "Pharmaciti Care",
+    category: "pharmacy",
+    subcategory: "diabetes",
+    pack: "Bottle of 300 tablets",
+    price: 145,
+    mrp: 185,
+    rx: false,
+    rating: 4.4,
+    description:
+      "Zero-calorie sweetener tablets — a safe sugar substitute for tea, coffee and diabetic-friendly diets.",
+    highlights: ["Zero calories", "Diabetic friendly", "300 tablets"],
+  },
+  {
+    id: "volini-gel",
+    name: "Volini Pain Relief Gel",
+    brand: "Sun Pharma",
+    category: "pharmacy",
+    subcategory: "pain-relief",
+    pack: "30 g tube",
+    price: 132,
+    mrp: 165,
+    rx: false,
+    rating: 4.6,
+    description:
+      "Fast-acting topical gel for relief from back pain, sprains, muscle pain and joint aches.",
+    highlights: ["Deep relief", "Non-greasy", "Quick action"],
+  },
+  {
+    id: "moov-cream",
+    name: "Moov Pain Relief Cream",
+    brand: "Reckitt",
+    category: "pharmacy",
+    subcategory: "pain-relief",
+    pack: "50 g tube",
+    price: 148,
+    mrp: 180,
+    rx: false,
+    rating: 4.5,
+    description:
+      "Targeted relief cream for back, neck and shoulder pain with a gentle warming effect.",
+    highlights: ["Backache relief", "Warming action", "Trusted brand"],
+  },
+  {
+    id: "cold-relief",
+    name: "Cold Relief Tablets",
+    brand: "Pharmaciti Generics",
+    category: "pharmacy",
+    subcategory: "cold-cough",
+    pack: "Strip of 10 tablets",
+    price: 34,
+    mrp: 45,
+    rx: false,
+    rating: 4.3,
+    description:
+      "Multi-symptom tablets that relieve blocked nose, headache, body ache and fever from cold and flu.",
+    highlights: ["Multi-symptom relief", "Fast acting", "Day-time formula"],
+  },
+  {
+    id: "throat-lozenges",
+    name: "Honey-Lemon Throat Lozenges",
+    brand: "Pharmaciti Care",
+    category: "pharmacy",
+    subcategory: "cold-cough",
+    pack: "Pack of 16 lozenges",
+    price: 52,
+    mrp: 70,
+    rx: false,
+    rating: 4.4,
+    description:
+      "Soothing medicated lozenges that relieve sore throat and cough with a honey-lemon flavour.",
+    highlights: ["Soothes sore throat", "Honey & lemon", "On-the-go relief"],
+  },
+  {
+    id: "calamine-lotion",
+    name: "Calamine Skin Lotion",
+    brand: "Pharmaciti Care",
+    category: "pharmacy",
+    subcategory: "skin-care",
+    pack: "100 ml bottle",
+    price: 95,
+    mrp: 120,
+    rx: false,
+    rating: 4.5,
+    description:
+      "Gentle calamine lotion that soothes skin irritation, rashes, itching and sunburn.",
+    highlights: ["Soothes itching", "Cooling relief", "For sensitive skin"],
+  },
+  {
+    id: "antifungal-cream",
+    name: "Antifungal Cream",
+    brand: "Pharmaciti Generics",
+    category: "pharmacy",
+    subcategory: "skin-care",
+    pack: "20 g tube",
+    price: 88,
+    mrp: 112,
+    rx: false,
+    rating: 4.4,
+    description:
+      "Medicated cream that treats fungal skin infections like ringworm, athlete's foot and itching.",
+    highlights: ["Treats fungal infection", "Relieves itching", "Dermatologist tested"],
   },
   {
     id: "multivitamin",

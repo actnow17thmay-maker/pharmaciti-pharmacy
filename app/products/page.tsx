@@ -9,22 +9,28 @@ import {
   Droplets,
   Package,
   LayoutGrid,
+  Citrus,
+  Syringe,
+  Bandage,
+  Thermometer,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import { Header } from "@/components/Header";
 import { BottomNav } from "@/components/BottomNav";
 import { ProductCard } from "@/components/ProductCard";
-import {
-  categories,
-  getCategory,
-  searchProducts,
-} from "@/lib/products";
+import { getCategory, searchProducts } from "@/lib/products";
 
 const PHARMACY_SUBS: { id: string; name: string; Icon: LucideIcon }[] = [
   { id: "all", name: "All", Icon: LayoutGrid },
   { id: "tablets", name: "Tablets", Icon: Pill },
   { id: "syrups", name: "Syrups", Icon: Droplets },
   { id: "general", name: "General items", Icon: Package },
+  { id: "vitamins", name: "Vitamins", Icon: Citrus },
+  { id: "diabetes", name: "Diabetes Care", Icon: Syringe },
+  { id: "pain-relief", name: "Pain Relief", Icon: Bandage },
+  { id: "cold-cough", name: "Cold & Cough", Icon: Thermometer },
+  { id: "skin-care", name: "Skin Care", Icon: Sparkles },
 ];
 
 function ProductsView() {
@@ -64,7 +70,10 @@ function ProductsView() {
       <Header variant="inner" title="Shop" />
 
       <main className="px-4 pb-28 pt-3 md:px-6 md:pb-16">
-        <div className="flex items-center gap-2 rounded-2xl border border-hairline bg-white px-4 py-3 shadow-sm focus-within:border-sea-300">
+        {/* Mobile-only: the inner header has no search bar, so the page provides
+            one. On md+ the global header search is shown instead (avoids two
+            search bars side by side). */}
+        <div className="flex items-center gap-2 rounded-2xl border border-hairline bg-white px-4 py-3 shadow-sm focus-within:border-sea-300 md:hidden">
           <Search className="h-5 w-5 text-sea-500" />
           <input
             value={q}
@@ -72,17 +81,6 @@ function ProductsView() {
             placeholder="Search medicines & health products"
             className="w-full bg-transparent text-sm text-ink outline-none placeholder:text-muted"
           />
-        </div>
-
-        <div className="no-scrollbar mt-3 flex gap-2 overflow-x-auto pb-1">
-          <Chip active={cat === "all"} onClick={() => setCat("all")}>
-            All
-          </Chip>
-          {categories.map((c) => (
-            <Chip key={c.id} active={cat === c.id} onClick={() => setCat(c.id)}>
-              {c.name}
-            </Chip>
-          ))}
         </div>
 
         {cat === "pharmacy" && (
@@ -155,29 +153,6 @@ function ProductsView() {
 
       <BottomNav />
     </div>
-  );
-}
-
-function Chip({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className={`shrink-0 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition ${
-        active
-          ? "border-sea-500 bg-sea-500 text-white"
-          : "border-hairline bg-white text-ink-soft hover:border-sea-300"
-      }`}
-    >
-      {children}
-    </button>
   );
 }
 

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import {
   Home,
   HeartPulse,
-  FlaskConical,
+  ClipboardList,
   ShoppingBag,
   FileUp,
   type LucideProps,
@@ -22,12 +22,17 @@ type Item = {
 
 const ITEMS: Item[] = [
   { href: "/", label: "Home", icon: Home, match: (p) => p === "/" },
-  { href: "/products", label: "Health Plans", icon: HeartPulse },
   {
-    href: "/products?cat=lab-tests",
-    label: "Lab Tests",
-    icon: FlaskConical,
+    href: "/products",
+    label: "Health Plans",
+    icon: HeartPulse,
     match: (p) => p.startsWith("/products"),
+  },
+  {
+    href: "/orders",
+    label: "My Orders",
+    icon: ClipboardList,
+    match: (p) => p.startsWith("/orders"),
   },
   {
     href: "/cart",
@@ -90,14 +95,20 @@ function NavLink({
   return (
     <Link
       href={item.href}
-      className={`flex flex-col items-center gap-1 py-1 text-[10px] font-semibold transition ${
+      className={`flex flex-col items-center gap-0.5 py-1 text-[10px] font-semibold transition ${
         active ? "text-sea-600" : "text-muted"
       }`}
     >
-      <span className="relative">
+      <span
+        className={`relative grid h-9 w-9 place-items-center rounded-full transition ${
+          active
+            ? "bg-sea-50 text-sea-600 shadow-[0_0_12px_2px_rgba(246,95,67,0.5)]"
+            : "text-muted"
+        }`}
+      >
         <Icon className="h-5 w-5" strokeWidth={active ? 2.4 : 1.9} />
         {item.badge && count > 0 && (
-          <span className="absolute -right-2 -top-1.5 grid h-4 min-w-4 place-items-center rounded-full bg-sea-500 px-1 text-[9px] font-bold text-white">
+          <span className="absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-sea-500 px-1 text-[9px] font-bold text-white">
             {count}
           </span>
         )}
