@@ -44,7 +44,7 @@ export type Product = {
 };
 
 export const categories: Category[] = [
-  { id: "pharmacy", name: "Pharmacy", iconKey: "pill" },
+  { id: "pharmacy", name: "Medicines", iconKey: "pill" },
   { id: "lab-tests", name: "Lab Tests", iconKey: "flask" },
   { id: "wellness", name: "Wellness", iconKey: "heart" },
   { id: "personal-care", name: "Personal Care", iconKey: "sparkles" },
