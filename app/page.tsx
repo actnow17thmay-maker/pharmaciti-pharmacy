@@ -2,8 +2,8 @@ import Link from "next/link";
 import { FileText } from "lucide-react";
 import { Header } from "@/components/Header";
 import { CategoryTabs } from "@/components/CategoryTabs";
-import { PromoCarousel } from "@/components/PromoCarousel";
 import { HeroBanner } from "@/components/HeroBanner";
+import { PopularCategories } from "@/components/PopularCategories";
 import { ProductRail } from "@/components/ProductRail";
 import { BottomNav } from "@/components/BottomNav";
 import { Logo } from "@/components/Logo";
@@ -46,8 +46,9 @@ export default function HomePage() {
           </div>
         </section>
 
-        <PromoCarousel />
         <HeroBanner />
+
+        <PopularCategories />
 
         <ProductRail title="Bestsellers" products={bestsellers} href="/products" />
         <ProductRail

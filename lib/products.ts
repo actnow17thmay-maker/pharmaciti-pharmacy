@@ -6,13 +6,35 @@ export type IconKey =
   | "baby"
   | "paw"
   | "device"
-  | "consult";
+  | "consult"
+  | "women"
+  | "men"
+  | "skin"
+  | "food"
+  | "oral"
+  | "hair"
+  | "diabetes"
+  | "cold"
+  | "protein"
+  | "homeopathy"
+  | "firstaid"
+  | "sexual"
+  | "elderly"
+  | "beauty"
+  | "surgicals"
+  | "mental";
 
 export type Category = {
   id: string;
   name: string;
   iconKey: IconKey;
   badge?: string;
+};
+
+export type PopularCategory = {
+  name: string;
+  iconKey: IconKey;
+  href: string;
 };
 
 /** Pharmacy-only sub-categories shown as round sub-tabs on the products page */
@@ -52,6 +74,33 @@ export const categories: Category[] = [
   { id: "pet-care", name: "Pet Care", iconKey: "paw", badge: "NEW" },
   { id: "devices", name: "Devices", iconKey: "device" },
   { id: "consults", name: "Consults", iconKey: "consult" },
+];
+
+/** Larger "Shop by category" grid shown on the home page below the hero banner */
+export const popularCategories: PopularCategory[] = [
+  { name: "Medicines", iconKey: "pill", href: "/products?cat=pharmacy" },
+  { name: "Baby Care", iconKey: "baby", href: "/products?cat=baby-care" },
+  { name: "Women Care", iconKey: "women", href: "/products" },
+  { name: "Men Care", iconKey: "men", href: "/products" },
+  { name: "Skin Care", iconKey: "skin", href: "/products" },
+  { name: "Food & Nutrition", iconKey: "food", href: "/products" },
+  { name: "Oral Care", iconKey: "oral", href: "/products" },
+  { name: "Hair Care", iconKey: "hair", href: "/products" },
+  { name: "Diabetes", iconKey: "diabetes", href: "/products" },
+  { name: "Cold, Cough & Fever", iconKey: "cold", href: "/products" },
+  {
+    name: "Protein & Supplements",
+    iconKey: "protein",
+    href: "/products?cat=wellness",
+  },
+  { name: "Homeopathy", iconKey: "homeopathy", href: "/products" },
+  { name: "First Aid", iconKey: "firstaid", href: "/products" },
+  { name: "Sexual Wellness", iconKey: "sexual", href: "/products" },
+  { name: "Elderly Care", iconKey: "elderly", href: "/products" },
+  { name: "Beauty Care", iconKey: "beauty", href: "/products" },
+  { name: "Surgicals", iconKey: "surgicals", href: "/products" },
+  { name: "Mental Wellness", iconKey: "mental", href: "/products" },
+  { name: "Pet Care", iconKey: "paw", href: "/products?cat=pet-care" },
 ];
 
 const TINTS = [
