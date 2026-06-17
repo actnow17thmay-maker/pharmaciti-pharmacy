@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { FileText } from "lucide-react";
 import { Header } from "@/components/Header";
-import { CategoryTabs } from "@/components/CategoryTabs";
 import { HeroBanner } from "@/components/HeroBanner";
 import { PopularCategories } from "@/components/PopularCategories";
 import { ProductRail } from "@/components/ProductRail";
@@ -19,8 +18,6 @@ export default function HomePage() {
       <Header variant="home" />
 
       <main className="pb-28 md:pb-16">
-        <CategoryTabs />
-
         {/* Order with prescription */}
         <section className="px-4 pt-4 md:px-6">
           <div className="flex items-center justify-between gap-3 rounded-2xl border border-sea-100 bg-sea-50/70 px-4 py-3">

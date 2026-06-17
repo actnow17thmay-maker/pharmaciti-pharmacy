@@ -10,10 +10,10 @@ export function ProductCard({ product }: { product: Product }) {
   const category = getCategory(product.category);
 
   return (
-    <article className="group flex h-full w-full flex-col rounded-2xl border border-hairline bg-white p-2.5 shadow-card transition duration-200 hover:-translate-y-0.5 hover:shadow-lg">
+    <article className="group flex h-full w-full flex-col rounded-2xl border border-hairline bg-white p-2 shadow-card transition duration-200 hover:-translate-y-0.5 hover:shadow-lg">
       <Link href={`/product/${product.id}`} className="flex flex-1 flex-col">
         <div
-          className="relative mb-2.5 grid aspect-square place-items-center overflow-hidden rounded-xl"
+          className="relative mb-2 grid aspect-[4/3] place-items-center overflow-hidden rounded-xl"
           style={{ backgroundColor: product.tint }}
         >
           {off > 0 && (

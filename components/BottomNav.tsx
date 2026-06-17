@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Home,
-  HeartPulse,
+  Stethoscope,
   ClipboardList,
   ShoppingBag,
   FileUp,
@@ -23,10 +23,10 @@ type Item = {
 const ITEMS: Item[] = [
   { href: "/", label: "Home", icon: Home, match: (p) => p === "/" },
   {
-    href: "/products",
-    label: "Health Plans",
-    icon: HeartPulse,
-    match: (p) => p.startsWith("/products"),
+    href: "/appointment",
+    label: "Doctors Appt",
+    icon: Stethoscope,
+    match: (p) => p.startsWith("/appointment"),
   },
   {
     href: "/orders",

@@ -79,6 +79,7 @@ export const categories: Category[] = [
 /** Larger "Shop by category" grid shown on the home page below the hero banner */
 export const popularCategories: PopularCategory[] = [
   { name: "Medicines", iconKey: "pill", href: "/products?cat=pharmacy" },
+  { name: "Lab Tests", iconKey: "flask", href: "/products?cat=lab-tests" },
   { name: "Baby Care", iconKey: "baby", href: "/products?cat=baby-care" },
   { name: "Women Care", iconKey: "women", href: "/products" },
   { name: "Men Care", iconKey: "men", href: "/products" },

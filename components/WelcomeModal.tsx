@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X, Store, Truck } from "lucide-react";
+import { X, Wallet, Truck } from "lucide-react";
 import { Logo } from "@/components/Logo";
 
 const FEATURES = [
-  { icon: Store, label: "Wholesale & Retail" },
+  { icon: Wallet, label: "No minimum order value" },
   { icon: Truck, label: "Free Home Delivery" },
 ];
 
@@ -79,30 +79,29 @@ export function WelcomeModal() {
             on your first order
           </p>
 
-          <div className="relative mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 shadow-sm">
+          <div className="relative mt-4 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 shadow-sm">
             <span className="text-[11px] font-semibold text-muted">Use code</span>
             <span className="text-sm font-extrabold tracking-wide text-sea-600">
               PHARMA25
             </span>
           </div>
 
-          <h2 className="relative mt-7 text-xl font-extrabold">
+          <h2 className="relative mt-5 text-xl font-extrabold">
             Welcome to Pharmaciti
           </h2>
           <p className="relative mt-1 text-[13px] text-white/90">
             Genuine medicines &amp; wellness essentials, delivered to your door.
           </p>
 
-          <div className="relative mt-5 grid grid-cols-2 gap-3">
+          {/* Two perks stacked one below the other in a single white card,
+              split by a hairline and stretched full width. */}
+          <div className="relative mt-4 divide-y divide-hairline overflow-hidden rounded-2xl bg-white text-left shadow-sm">
             {FEATURES.map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className="flex flex-col items-center gap-2 rounded-2xl bg-white p-4 text-center shadow-sm"
-              >
-                <span className="grid h-12 w-12 place-items-center rounded-full bg-sea-50">
-                  <Icon className="h-6 w-6 text-sea-600" />
+              <div key={label} className="flex items-center gap-3 px-4 py-3">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-sea-50">
+                  <Icon className="h-5 w-5 text-sea-600" />
                 </span>
-                <span className="text-[13px] font-semibold leading-tight text-ink">
+                <span className="text-sm font-semibold leading-tight text-ink">
                   {label}
                 </span>
               </div>

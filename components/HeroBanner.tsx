@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   ShieldCheck,
@@ -58,9 +61,56 @@ const SLIDES: Slide[] = [
 ];
 
 export function HeroBanner() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const activeRef = { current: 0 };
+
+    const onScroll = () => {
+      const elRect = el.getBoundingClientRect();
+      const center = elRect.left + elRect.width / 2;
+      let nearest = 0;
+      let min = Infinity;
+      Array.from(el.children).forEach((child, i) => {
+        const r = (child as HTMLElement).getBoundingClientRect();
+        const d = Math.abs(r.left + r.width / 2 - center);
+        if (d < min) {
+          min = d;
+          nearest = i;
+        }
+      });
+      activeRef.current = nearest;
+      setActive(nearest);
+    };
+
+    el.addEventListener("scroll", onScroll, { passive: true });
+
+    const id = setInterval(() => {
+      const children = Array.from(el.children) as HTMLElement[];
+      if (children.length < 2) return;
+      const next = (activeRef.current + 1) % children.length;
+      el.scrollTo({
+        left: children[next].offsetLeft - children[0].offsetLeft,
+        behavior: "smooth",
+      });
+    }, 8000);
+
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      clearInterval(id);
+    };
+  }, []);
+
   return (
     <section className="pt-3">
-      <div className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 md:px-6">
+      <div
+        ref={scrollRef}
+        className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 md:px-6"
+      >
         {SLIDES.map((slide, i) => {
           const Decor = slide.decor;
           return (
@@ -108,9 +158,14 @@ export function HeroBanner() {
       </div>
 
       <div className="mt-2.5 flex justify-center gap-1.5">
-        <span className="h-1.5 w-5 rounded-full bg-sea-500" />
-        <span className="h-1.5 w-1.5 rounded-full bg-sea-200" />
-        <span className="h-1.5 w-1.5 rounded-full bg-sea-200" />
+        {SLIDES.map((_, i) => (
+          <span
+            key={i}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === active ? "w-5 bg-sea-500" : "w-1.5 bg-sea-200"
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
