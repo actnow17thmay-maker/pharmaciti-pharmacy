@@ -6,8 +6,8 @@ import { X, Wallet, Truck } from "lucide-react";
 import { Logo } from "@/components/Logo";
 
 const FEATURES = [
-  { icon: Wallet, label: "No minimum order value" },
   { icon: Truck, label: "Free Home Delivery" },
+  { icon: Wallet, label: "No minimum order value" },
 ];
 
 const STORAGE_KEY = "pharmaciti_welcomed";
