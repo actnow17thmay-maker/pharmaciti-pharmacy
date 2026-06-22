@@ -53,6 +53,9 @@ const MAP: Record<IconKey, React.ComponentType<LucideProps>> = {
   mental: Brain,
 };
 
+/** All selectable icon keys (handy for admin pickers). */
+export const ICON_KEYS = Object.keys(MAP) as IconKey[];
+
 export function CategoryIcon({
   iconKey,
   className,

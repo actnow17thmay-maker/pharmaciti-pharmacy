@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { X, Wallet, Truck } from "lucide-react";
 import { Logo } from "@/components/Logo";
 
@@ -12,15 +13,18 @@ const FEATURES = [
 const STORAGE_KEY = "pharmaciti_welcomed";
 
 export function WelcomeModal() {
+  const pathname = usePathname();
+  const isAdmin = pathname?.startsWith("/admin") ?? false;
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    if (isAdmin) return;
     try {
       if (!sessionStorage.getItem(STORAGE_KEY)) setOpen(true);
     } catch {
       setOpen(true);
     }
-  }, []);
+  }, [isAdmin]);
 
   const close = () => {
     try {
@@ -31,7 +35,7 @@ export function WelcomeModal() {
     setOpen(false);
   };
 
-  if (!open) return null;
+  if (isAdmin || !open) return null;
 
   return (
     <div
@@ -70,7 +74,7 @@ export function WelcomeModal() {
             <span className="mb-4 whitespace-nowrap text-base font-extrabold">
               Up to
             </span>
-            <span className="text-[88px] font-black leading-[0.82] tracking-tight drop-shadow-sm">
+            <span className="text-[76px] font-black leading-[0.82] tracking-tight drop-shadow-sm">
               25%
             </span>
             <span className="mb-3 text-3xl font-extrabold">OFF</span>
@@ -101,7 +105,7 @@ export function WelcomeModal() {
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-sea-50">
                   <Icon className="h-5 w-5 text-sea-600" />
                 </span>
-                <span className="text-sm font-semibold leading-tight text-ink">
+                <span className="text-[13px] font-semibold uppercase leading-tight text-ink">
                   {label}
                 </span>
               </div>
