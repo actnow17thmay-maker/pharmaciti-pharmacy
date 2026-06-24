@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   Search,
@@ -14,6 +14,7 @@ import {
   Bandage,
   Thermometer,
   Sparkles,
+  ChevronRight,
   type LucideIcon,
 } from "lucide-react";
 import { Header } from "@/components/Header";
@@ -49,6 +50,25 @@ export function ProductsView({ products }: { products: Product[] }) {
   const [q, setQ] = useState(qParam);
   const [cat, setCat] = useState(catParam);
   const [sub, setSub] = useState("all");
+  const [subOpen, setSubOpen] = useState(false);
+  const subMenuRef = useRef<HTMLDivElement>(null);
+
+  // Close the category dropdown on outside click or Escape.
+  useEffect(() => {
+    if (!subOpen) return;
+    function onPointerDown(e: PointerEvent) {
+      if (!subMenuRef.current?.contains(e.target as Node)) setSubOpen(false);
+    }
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setSubOpen(false);
+    }
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [subOpen]);
 
   // Re-sync local state when the URL params change. This is the React-blessed
   // "adjust state while rendering" pattern (no effect, no cascading render):
@@ -99,36 +119,83 @@ export function ProductsView({ products }: { products: Product[] }) {
         </div>
 
         {cat === "pharmacy" && (
-          <div className="no-scrollbar mt-4 flex gap-4 overflow-x-auto pb-1">
-            {PHARMACY_SUBS.map(({ id, name, Icon }) => {
-              const isActive = sub === id;
+          <div
+            ref={subMenuRef}
+            className="no-scrollbar mt-4 flex items-start gap-4 overflow-x-auto pb-1"
+          >
+            {/* "All" acts as the dropdown trigger: collapsed it shows alone,
+                expanded it reveals the rest of the categories in the same row. */}
+            {(() => {
+              const isActive = sub === "all";
               return (
                 <button
-                  key={id}
                   type="button"
-                  onClick={() => setSub(id)}
-                  aria-pressed={isActive}
+                  onClick={() => setSubOpen((o) => !o)}
+                  aria-haspopup="listbox"
+                  aria-expanded={subOpen}
                   className="group flex shrink-0 flex-col items-center gap-1.5"
                 >
                   <span
-                    className={`grid h-14 w-14 place-items-center rounded-full border transition ${
+                    className={`relative grid h-14 w-14 place-items-center rounded-full border transition ${
                       isActive
                         ? "border-sea-500 bg-sea-500 text-white shadow-soft"
                         : "border-hairline bg-sea-50 text-sea-600 group-hover:border-sea-300"
                     }`}
                   >
-                    <Icon className="h-6 w-6" strokeWidth={1.9} />
+                    <LayoutGrid className="h-6 w-6" strokeWidth={1.9} />
+                    {!subOpen && (
+                      <span className="absolute -bottom-0.5 -right-0.5 grid h-5 w-5 place-items-center rounded-full border border-white bg-white text-sea-500 shadow-soft">
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </span>
+                    )}
                   </span>
                   <span
                     className={`text-[11px] font-semibold leading-tight ${
                       isActive ? "text-sea-600" : "text-ink-soft"
                     }`}
                   >
-                    {name}
+                    All
                   </span>
                 </button>
               );
-            })}
+            })()}
+
+            {subOpen &&
+              PHARMACY_SUBS.filter((s) => s.id !== "all").map(
+                ({ id, name, Icon }) => {
+                  const isActive = sub === id;
+                  return (
+                    <button
+                      key={id}
+                      type="button"
+                      role="option"
+                      aria-selected={isActive}
+                      onClick={() => {
+                        setSub(id);
+                        setSubOpen(false);
+                      }}
+                      className="group flex shrink-0 flex-col items-center gap-1.5"
+                    >
+                      <span
+                        className={`grid h-14 w-14 place-items-center rounded-full border transition ${
+                          isActive
+                            ? "border-sea-500 bg-sea-500 text-white shadow-soft"
+                            : "border-hairline bg-sea-50 text-sea-600 group-hover:border-sea-300"
+                        }`}
+                      >
+                        <Icon className="h-6 w-6" strokeWidth={1.9} />
+                      </span>
+                      <span
+                        className={`text-[11px] font-semibold leading-tight ${
+                          isActive ? "text-sea-600" : "text-ink-soft"
+                        }`}
+                      >
+                        {name}
+                      </span>
+                    </button>
+                  );
+                },
+              )}
           </div>
         )}
 
